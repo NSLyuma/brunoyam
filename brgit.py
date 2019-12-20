@@ -1,0 +1,1 @@
+print('kaizokuou ni naru')
