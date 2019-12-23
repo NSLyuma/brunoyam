@@ -75,17 +75,111 @@ print(data)
 #  [0,0,0],
 #  [-1,0,0]]
 # -1 - это мины
+n=5
+m=5
+bomb=9
+data=[[0 for i in range(n)] for j in range(m)]
+print(data)
+data[0][1]=bomb
+data[2][3]=bomb
+data[2][1]=bomb
+print(data)
+x=1
+y=1
+data.insert(0,[0]*(n+2)) #добавляем рамку сверху
+data.append([0]*(n+2)) #добавляем рамку снизу
+for i in range(1,m+1): #добавляем рамку с боков
+    data[i].append(0)
+    data[i].insert(0,0)
+print(data)
+#смещаем точку
+x+=1
+y+=1
+bomb_count=0 #изначально считаем, что ничего нет
+for i in range(-1,2):
+    for j in range(-1,2):
+        print(i,j)
+        if data[x+i][y+j]==bomb:
+            bomb_count+=1
+print(bomb_count)
+
+for row in range(m):
+    for column in range(n):
+        x=row+1
+        y=column+1
+        if data[x][y]!=bomb:
+            bomb_count=0
+            for i in range(-1, 2):
+                for j in range(-1, 2):
+                    if data[x + i][y + j]==bomb:
+                        bomb_count+=1
+            data[x][y]=bomb_count
+for row in data:
+    print(row)
 
 # Напечатать таблицу змейкой
 # Дано n
 # 123 ->
 # 654 <-
 # 789 ->
+result=[]
+n=4
+for i in range(n):
+    current_list=[x for x in range(n*i+1,n*(i+1)+1)]
+    print(current_list)
+    if i%2==1:
+        current_list.reverse()
+    result.append(current_list)
+for row in result:
+    print(row)
 
 # Напечатать таблицу спиралью
 # 123
 # 894
 # 765
+x=0
+y=0
+#x и y - начальные координаты
+direction=0
+#direction - направление
+#направо - 0, вниз - 1, налево - 2, вверх - 3
+n=3
+result=[[0 for i in range(n)] for j in range(n)]
+current=1
+while current<n*n+1:
+    if result[x][y]==0:
+        result[x][y]=current #в координаты ставим начальное значение
+        current+=1
+    if direction==0: #движение вправо
+        if y+1<n:
+            y+=1
+        else:
+            direction+=1 #идём вниз
+    elif direction==1: #движение вниз
+        if x+1<n:
+            x+=1
+        else:
+            direction+=1 #идём влево
+    elif direction==2: #движение влево
+        if y-1>=0:
+            y-=1
+        else:
+            direction+=1 #идём вверх
+    elif direction==3: #движение вверх
+        if x-1>=0:
+            x-=1
+        else:
+            direction=0 #движение вправо
+for row in result:
+    print(row)
+
+
+
+
+
+
+
+
 
 
 
@@ -97,3 +191,47 @@ print(result)
 a=12
 b=23
 maximum=b if b>a else a # тернарный оператор сравнения
+
+
+
+
+
+#---------------------------------------
+# 5. Сгенерировать список вида [1, 2, 2, 3, 3, 3, 4, 4, 4, 4, ..., n, n, n, .., n] для заданного n.
+values=[]
+k=3
+for i in range(k):
+    values.append(k)
+print(values)
+
+values=[]
+k=3
+n=4
+for k in range(1,n+1):
+    for i in range(k):
+        values.append(k)
+    print(values)
+
+values=[]
+k=3
+n=4
+for k in range(1,n+1):
+    for i in range(k):
+        values.append(k)
+print(values)
+
+values=[]
+k=3
+n=4
+for k in range(1,n+1):
+    # for i in range(k): эту
+    #     values.append(k) и эту строчки заменяем на:
+    values+=[k]*k
+print(values)
+
+values=[k for k in range(1,n+1) for i in range(k)] #2 нижние строчки заменили на одну
+# for k in range(1,n+1):
+#     for i in range(k):
+#         values.append(k) и убрали эту
+print(values)
+#---------------------------------------
