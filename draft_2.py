@@ -1,38 +1,70 @@
-# 7. Функции
-def sum_of_digits(number):
-    return sum([int(x) for x in str(number)])
-print(sum_of_digits(1234))
-print('-----')
+# словарь
+months = {
+    1: 'January',
+    2: 'February',
+    3: 'March',
+    4: 'April',
+    5: 'May',
+    6: 'June',
+    7: 'July',
+    8: 'August',
+    9: 'September',
+    10: 'October',
+    11: 'November',
+    12: 'December'
+}
+str_value = months.get(14)  # str_value=months[11] <-можно заменить на это
+if str_value is None:
+    print('Wrong number')
+else:
+    print(str_value)
+# как перебрать значения в словаре (обращаемя к ключам (номера))
+for value in months:
+    print(value)
+# показывает все номера и названия месяцев
+    print(months[value])
 
+keys = [value for value in months]
+keys = months.keys()
 
-#сумма цифр числа
-number=123
-print(sum([int(x) for x in str(number)]))
-#то же самое, но по-другому
-number=123
-summa=0
-while number!=0:
-    summa+=number%10
-    number//=10
-print(summa)
+#как добавлять новое значение в словарь
+months[13]='13 month'
+print(months[13])
+#как удалить элемент
+del months[13]
 
-#количество делителей числа
-number=123
-count=0
-for i in range(2,number):
-    if number%i==0:
-        count+=1
-        print(i)
-print(count)
-#то же самое, но по-другому
-print(sum([1 if number%x==0 else 0 for x in range(2,number)]))
+#пустой словарь (один из двух вариантов)
+dictionary=dict()
+dictionary={}
 
-#количество делителей числа для списка чисел
-print('-----')
-data=[123,456,789]
-for i in data:
-    summa=0
-    while i!=0:
-        summa+=i%10
-        i//=10
-    print(summa)
+phones=set()
+phones.add('12345')
+phones.add('1235645')
+print(phones)
+phones.add('123445')
+print(phones)
+phones.add('197655')
+phones.add('67645')
+print(phones)
+
+for element in phones:
+    print(element)
+
+another_phones=set()
+another_phones.add('3785629765')
+another_phones.add('34565')
+another_phones.add('67645')
+
+#объединение множеств
+united_set=phones.union(another_phones)
+print(united_set)
+
+#пересечение множеств
+intersect_set=phones.intersection(another_phones)
+print(intersect_set)
+
+element='123'
+if element in united_set:
+    print('yes')
+
+#hash

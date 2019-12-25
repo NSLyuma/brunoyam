@@ -110,3 +110,32 @@ def sum_of_digits(number):
     return sum([int(x) for x in str(number)])
 print(sum_of_digits(1234))
 print('-----')
+
+# 8. Задача с парковкой
+empty='__'
+data=[empty]*5
+while True:
+    user_input=input('Enter a command: ').split()
+    command=user_input[0]
+    if command=='show':
+        print(data)
+    elif command=='free':
+        print(data.count(empty))
+    elif command=='park':
+        # free_pos=0
+        # for place in data:
+        #     if place==empty:
+        #         break
+        #     free_pos+=1 все эти строки можно заменить на эту:
+        free_pos=data.index(empty)
+        data[free_pos]=user_input[1]
+        print(data)
+    elif command=='leave':
+        # for i in range(len(data)):
+        #     if data[i]==user_input[1]:
+        #         data[i]=empty
+        #         break все эти строки можно заменить на эту:
+        data[data.index(user_input[1])]=empty
+        print(data)
+    else:
+        break
