@@ -1,29 +1,19 @@
-# 5. Дана дата в формате "12.04.2019", требуется перевести в запись "12 апреля 2019"
+import time
 
-# def change_date(data):
-#     change_date('12','.',)
+def run_with_time(func):
+    def wrapper(*args,**kw):
+        start_time = time.time()
+        func(*args,**kw)
+        end_time = time.time()
+        print(end_time - start_time)
+    return wrapper
 
+def common_function(*arg,**kw):
+    pass
 
+@run_with_time
+def action(name):
+    print(name)
+    return [i for i in range(10000000)]
 
-def my_join(*args):
-    print(args[0])
-    print(args[1])
-my_join('Hello','world')
-my_join('a','b','c','d')
-
-def my_join(*args):
-    return ' '.join(args)
-print(my_join('Hello','world'))
-print(my_join('a','b','c','d'))
-
-def my_join(*args,delimiter=' '):
-    return delimiter.join(args)
-print(my_join('Hello','world'))
-print(my_join('a','b','c','d'))
-
-print('hello','world','!',sep=',',end='!!!\n')
-
-def most_common_function(*args,**kwargs):
-    print(args)
-    print(kwargs)
-most_common_function('hello','world','!',sep=',',end='!!!')
+action('hello')

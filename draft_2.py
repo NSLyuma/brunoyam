@@ -1,70 +1,89 @@
-# словарь
-months = {
-    1: 'January',
-    2: 'February',
-    3: 'March',
-    4: 'April',
-    5: 'May',
-    6: 'June',
-    7: 'July',
-    8: 'August',
-    9: 'September',
-    10: 'October',
-    11: 'November',
-    12: 'December'
-}
-str_value = months.get(14)  # str_value=months[11] <-можно заменить на это
-if str_value is None:
-    print('Wrong number')
-else:
-    print(str_value)
-# как перебрать значения в словаре (обращаемя к ключам (номера))
-for value in months:
-    print(value)
-# показывает все номера и названия месяцев
-    print(months[value])
+#функция, которая преобразует номер месяца в количество дней
+def number_of_days(month_number):
+    if month_number==1: #feb
+        return 28
+    else:
+        if month_number<7:
+            return 30 if month_number%2==1 else 31 #jan-jul
+        else:
+            return 31 if month_number%2==1 else 30 #aug-dec
+print(number_of_days(9))
 
-keys = [value for value in months]
-keys = months.keys()
+#словарь
+weather=dict()
+months=['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec']
+for i in range(len(months)):
+    current_month=months[i]
+    weather[current_month]=[0]*number_of_days(i)
+print(weather)
 
-#как добавлять новое значение в словарь
-months[13]='13 month'
-print(months[13])
-#как удалить элемент
-del months[13]
+#добавляет температуру в каждый день месяца
+with open('data_one_year.txt','r') as data:
+    for month in months:
+        current_days=weather[month]
+        for i in range(len(current_days)):
+            current_days[i]=int(data.readline())
+print(weather)
+print(weather['may'][7])
 
-#пустой словарь (один из двух вариантов)
-dictionary=dict()
-dictionary={}
+#функция, которая разбирается с командой average
+def process_average (user_input):
+    if len(user_input) > 2:
+        first = user_input[1]
+        second = user_input[2]
+    elif user_input[1]=='year':
+        summa = 0
+        for month in weather:
+            summa += sum(weather[month])
+        print(summa / 365)
+    else:
+        days = weather[user_input[1]]
+        print(sum(days)/len(days))
 
-phones=set()
-phones.add('12345')
-phones.add('1235645')
-print(phones)
-phones.add('123445')
-print(phones)
-phones.add('197655')
-phones.add('67645')
-print(phones)
+def process_command(user_input,year_process,month_process,range_process):
+    if len(user_input)>2:
+        range_process()
+    elif user_input[1]=='year':
+        year_process
+    else:
+        month_process
 
-for element in phones:
-    print(element)
+def year_process_average(user_input):
+    first = user_input[1]
+    second = user_input[2]
 
-another_phones=set()
-another_phones.add('3785629765')
-another_phones.add('34565')
-another_phones.add('67645')
+def month_process_average(user_input):
 
-#объединение множеств
-united_set=phones.union(another_phones)
-print(united_set)
+def
 
-#пересечение множеств
-intersect_set=phones.intersection(another_phones)
-print(intersect_set)
+while True:
+    try:
+        user_input=input().split()
+        command=user_input[0]
+        if command=='temp':
+            month=user_input[1]
+            day=int(user_input[2])
+            print(weather[month][day])
+        elif command=='average':
+            if len(user_input)>2:
+                first=user_input[1]
+                second=user_input[2]
+            elif user_input[1]=='year':
+                summa=0
+                for month in weather:
+                    summa+=sum(weather[month])
+                print(summa/365)
+            else:
+                days=weather[user_input[1]
+                ]
 
-element='123'
-if element in united_set:
-    print('yes')
 
-#hash
+
+
+        if command=='a_m':
+            month=user_input[1]
+            print(sum(weather[month])/len(weather[month]))
+        if command=='a_y':
+            print(sum(weather)/365)
+    except:
+        print('Wrong command')

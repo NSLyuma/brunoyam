@@ -161,4 +161,70 @@ def simple_number(a):
     return 'simple'
 print(simple_number(13))
 
-# 5. Дана дата в формате "12.04.2019", требуется перевести в запись "12 апреля 2019"
+# 5. Даны фамилия, имя и отчество. Записать их в сокращенном виде
+def short_name(name,surname,family_name):
+    result=surname+' '+name[0]+'. '+family_name[0]+'.'
+    return result
+print(short_name('Ivan','Ivanov','Ivanovich'))
+
+# 6. Проверить, что список упорядочен в одну из сторон
+def is_sorted(data):
+    ordered=sorted(data)
+    if ordered==data:
+        return True
+    ordered.reverse() #либо ordered=reversed(ordered)
+    if ordered==data:
+        return True
+    return False
+data=[1,2,3]
+print(is_sorted(data))
+data.reverse()
+print(is_sorted(data))
+data[0]=0
+print(is_sorted(data))
+
+# 7. Дан список, вернуть список, состоящий только из различных значений (порядок не имеет значения)
+def distinct(data):
+    elements=set()
+    for value in data:
+        elements.add(value)
+    return list(elements)
+print(distinct([1,2,2,3,3,3,3,3,3,33,3,4]))
+# можно сделать так:
+def distinct(data):
+    return list(set(data))
+print(distinct([1,2,2,3,3,3,3,3,3,33,3,4]))
+
+# 8. Дана дата в формате "12.04.2019", требуется перевести в запись "12 апреля 2019"
+months = {
+    1: 'January',
+    2: 'February',
+    3: 'March',
+    4: 'April',
+    5: 'May',
+    6: 'June',
+    7: 'July',
+    8: 'August',
+    9: 'September',
+    10: 'October',
+    11: 'November',
+    12: 'December'
+}
+def format_date(date):
+    parts=date.split('.') #появляется список вида ['12','04','2019']
+    changed_month=months.get(int(parts[1]))
+    if changed_month is None:
+        return 'Not found'
+    else:
+        return parts[0]+' '+changed_month+' '+parts[2]
+print(format_date('27.12.2019'))
+
+# 9. Дан список имен и список телефонов, сформировать словарь вида { имя: телефон }
+def form_map(names,phones):
+    name_to_phone=dict()
+    for i in range(len(names)):
+        name_to_phone[names[i]]=phones[i]
+    return name_to_phone
+
+
+# 10. Дан список чисел, посчитать количество различных значений в нем
