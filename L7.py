@@ -25,7 +25,7 @@ print(max.accept_credit(1000))
 # Коти
 class Cat():
 
-    def __init__(self,name,color,weight,age,):
+    def __init__(self,name,color,weight,age):
         self.name=name
         self.color=color
         self.weight=weight
